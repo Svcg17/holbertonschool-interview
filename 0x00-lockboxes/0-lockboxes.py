@@ -17,14 +17,10 @@ def canUnlockAll(boxes):
         return False
     while stack:
         p = stack.pop()
-        print('P:', p)
         for key in boxes[p]:
-            print('key: ', key)
             if key > 0 and key < len(boxes) and unlocked[key] == 0:
                 unlocked[key] = 1
                 stack.append(key)
-        print('unl', unlocked)
-        print('stack, ', stack)
         i = i + 1
 
     if 0 in unlocked:
