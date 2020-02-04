@@ -7,22 +7,27 @@
 
 
 def canUnlockAll(boxes):
-    newList = [0]
-    i = j = 0
-    if not isinstance(boxes, list):
-        return False
+    stack = [0]
+    unlocked = [1] + [0] * (len(boxes) - 1)
+    i = 0
+
     if len(boxes) == 0:
         return True
-
-    for i in newList:
-        for j in boxes[i]:
-            if not isinstance(j, int) or j < 0 or j > len(boxes) - 1:
-                return False
-            if j not in newList:
-                newList.append(j)
-            else:
-                continue
-    if len(newList) == len(boxes):
-        return True
-    else:
+    if not isinstance(boxes, list):
         return False
+    while stack:
+        p = stack.pop()
+        print('P:', p)
+        for key in boxes[p]:
+            print('key: ', key)
+            if key > 0 and key < len(boxes) and unlocked[key] == 0:
+                unlocked[key] = 1
+                stack.append(key)
+        print('unl', unlocked)
+        print('stack, ', stack)
+        i = i + 1
+
+    if 0 in unlocked:
+        return False
+    else:
+        return True
