@@ -9,14 +9,14 @@
 def canUnlockAll(boxes):
     newList = [0]
     i = j = 0
-    if not boxes or not isinstance(boxes, list):
+    if not isinstance(boxes, list):
         return False
     if len(boxes) == 0:
         return True
 
     for i in newList:
         for j in boxes[i]:
-            if not isinstance(j, int) or j < 0 or j > len(boxes):
+            if not isinstance(j, int) or j < 0 or j > len(boxes) - 1:
                 return False
             if j not in newList:
                 newList.append(j)
@@ -24,5 +24,4 @@ def canUnlockAll(boxes):
                 continue
     if len(newList) == len(boxes):
         return True
-    else:
-        return False
+    return False
