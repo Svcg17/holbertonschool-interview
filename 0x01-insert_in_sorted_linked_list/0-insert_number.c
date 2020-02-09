@@ -1,6 +1,26 @@
 #include "lists.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+
+/**
+ * create_node - creates a new node of type listint_t
+ * @number: value of the new node
+ *
+ * Return: the address of the new node
+ */
+listint_t *create_node(int number)
+{
+	listint_t *new;
+
+	new = malloc(sizeof(listint_t));
+	new->n = number;
+	new->next = NULL;
+
+	return (new);
+}
+
+
 /**
  * insert_node - inserts a number into a sorted singly linked list
  * @head: double pointer to the first node of the linked list
@@ -14,22 +34,19 @@ listint_t *insert_node(listint_t **head, int number)
 	listint_t *cur;
 	listint_t *p;
 	listint_t *new;
+	int i = 0;
 
-	new = malloc(sizeof(listint_t));
 	cur = *head;
 	p = *head;
-	new->n = number;
-	new->next = NULL;
+	new = create_node(number);
 
 	if (!head || !new)
 		return (NULL);
-
 	if (!*head)
 	{
 		*head = new;
 		return (new);
 	}
-
 	while (cur)
 	{
 		if (cur->next == NULL)
@@ -39,12 +56,19 @@ listint_t *insert_node(listint_t **head, int number)
 		}
 		if (cur->n > new->n)
 		{
+			if (i == 0)
+			{
+				new->next = cur->next;
+				*head = new;
+				break;
+			}
 			new->next = cur;
 			p->next = new;
-			return (new);
+			break;
 		}
 		p = cur;
 		cur = cur->next;
+		i++;
 	}
-	return (NULL);
+	return (new);
 }
