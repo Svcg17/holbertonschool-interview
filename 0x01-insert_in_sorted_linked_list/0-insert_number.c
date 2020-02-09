@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 /**
  * create_node - creates a new node of type listint_t
  * @number: value of the new node
@@ -34,7 +33,6 @@ listint_t *insert_node(listint_t **head, int number)
 	listint_t *cur;
 	listint_t *p;
 	listint_t *new;
-	int i = 0;
 
 	cur = *head;
 	p = *head;
@@ -47,7 +45,13 @@ listint_t *insert_node(listint_t **head, int number)
 		*head = new;
 		return (new);
 	}
-	while (cur)
+	if (new->n < (*head)->n)
+	{
+		new->next = (*head);
+		*head = new;
+		return (new);
+	}
+	while (cur && *head)
 	{
 		if (cur->next == NULL)
 		{
@@ -56,19 +60,12 @@ listint_t *insert_node(listint_t **head, int number)
 		}
 		if (cur->n > new->n)
 		{
-			if (i == 0)
-			{
-				new->next = cur->next;
-				*head = new;
-				break;
-			}
 			new->next = cur;
 			p->next = new;
 			break;
 		}
 		p = cur;
 		cur = cur->next;
-		i++;
 	}
 	return (new);
 }
