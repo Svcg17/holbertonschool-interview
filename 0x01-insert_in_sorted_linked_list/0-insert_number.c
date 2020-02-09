@@ -1,8 +1,8 @@
 #include "lists.h"
 #include <stdio.h>
 #include <stdlib.h>
-/*
- * insert_node - Inserts a number into a sorted singly linked list
+/**
+ * insert_node - inserts a number into a sorted singly linked list
  * @head: double pointer to the first node of the linked list
  * @number: integer to insert
  *
@@ -19,22 +19,26 @@ listint_t *insert_node(listint_t **head, int number)
 	cur = *head;
 	p = *head;
 	new->n = number;
+	new->next = NULL;
 
-	if (!head || !new) {
+	if (!head || !new)
 		return (NULL);
-	}
 
-	if (!*head) {
+	if (!*head)
+	{
 		*head = new;
 		return (new);
 	}
 
-	while (cur) {
-		if (cur->next == NULL) {
+	while (cur)
+	{
+		if (cur->next == NULL)
+		{
 			cur->next = new;
 			new->next = NULL;
 		}
-		if (cur->n > new->n) {
+		if (cur->n > new->n)
+		{
 			new->next = cur;
 			p->next = new;
 			return (new);
