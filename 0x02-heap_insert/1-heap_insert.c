@@ -41,23 +41,22 @@ queue_t *insert(queue_t **h_queue, heap_t *node)
 	return (new);
 }
 
+
 /**
  * traversal - level order traversal through queue
  * @root: double pointer to the start of the queue
+ * @value: value to give inserted nodes
  *
  * Return: pointer to something
  */
 heap_t *traversal(heap_t **root, int value)
 {
-	queue_t *h_queue;
+	queue_t *h_queue = NULL;
 	heap_t *curr;
 	heap_t *new = NULL;
 
-	h_queue = malloc(sizeof(*h_queue));
-	if (!h_queue)
+	if (!insert(&h_queue, *root))
 		return (NULL);
-	h_queue->node = *root;
-	h_queue->next = NULL;
 	while (h_queue)
 	{
 		curr = h_queue->node;
@@ -73,7 +72,6 @@ heap_t *traversal(heap_t **root, int value)
 			if (!new)
 				return (NULL);
 		}
-
 		if (curr->right)
 		{
 			if (!insert(&h_queue, curr->right))
@@ -93,6 +91,31 @@ heap_t *traversal(heap_t **root, int value)
 }
 
 /**
+ * swap - if necessary, swaps the new node's value with it's parent's value
+ * @new: new node to swapt value with
+ *
+ * Return: a pointer to the modified value
+ */
+heap_t *swap(heap_t *new)
+{
+	heap_t *ptr = new;
+	int tmp;
+
+	while (ptr->parent)
+	{
+		if (ptr->n > ptr->parent->n)
+		{
+			tmp = ptr->n;
+			ptr->n = ptr->parent->n;
+			ptr->parent->n = tmp;
+			new = new->parent;
+		}
+		ptr = ptr->parent;
+	}
+	return (new);
+}
+
+/**
  * heap_insert - inserts a value into a Max Binary Heap
  * @root: double pointer to the root node of the Heap
  * @value: value stored in the node to be inserted
@@ -101,16 +124,15 @@ heap_t *traversal(heap_t **root, int value)
  */
 heap_t *heap_insert(heap_t **root, int value)
 {
-	heap_t *new = binary_tree_node(*root, value);
+	heap_t *new;
 
-	if (!new)
+	if (!root)
 		return (NULL);
-	if (*root == NULL)
+	if (!*root)
 	{
-		*root = new;
-		return (new);
+		*root = binary_tree_node(*root, value);
+		return (*root);
 	}
 	new = traversal(root, value);
-
-	return (new);
+	return (swap(new));
 }

@@ -22,6 +22,12 @@ typedef struct binary_tree_s
 
 typedef struct binary_tree_s heap_t;
 
+/**
+ * struct queue - A linked list representing queues.
+ *
+ * @node: heap_t type node (binary tree node)
+ * @next: pointer to the next node
+ */
 typedef struct queue
 {
 	heap_t *node;
