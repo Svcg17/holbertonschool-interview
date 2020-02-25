@@ -12,10 +12,10 @@ def minOperations(n):
     suma = 0
     if n <= 1:
         return suma
-    else:
-        for i in range(2, n + 1):
-            while n % i == 0:
-                suma += i
-                n = n / i
-        return suma
-    return n
+    for i in range(2, n):
+        while n % i == 0:
+            suma += i
+            n = n // i
+    if n > 1:
+        suma += n
+    return suma
