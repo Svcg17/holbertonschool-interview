@@ -5,18 +5,19 @@
  */
 static void print_grid(int grid[3][3])
 {
-    int i, j;
-    printf("=\n");
-    for (i = 0; i < 3; i++)
-    {
-        for (j = 0; j < 3; j++)
-        {
-            if (j)
-                printf(" ");
-            printf("%d", grid[i][j]);
-        }
-        printf("\n");
-    }
+	int i, j;
+
+	printf("=\n");
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			if (j)
+				printf(" ");
+			printf("%d", grid[i][j]);
+		}
+		printf("\n");
+	}
 }
 /**
  * handle_topple - Handles when a grid is unstable
@@ -65,7 +66,6 @@ void loop_grid(int grid[3][3])
 	int i, j, unstable = 1, t = 0;
 	int cpy_grid[3][3];
 
-
 	while (unstable)
 	{
 
@@ -99,14 +99,18 @@ void loop_grid(int grid[3][3])
  * @grid1: stable double arrray
  * @grid2: stable double array
  */
-void sandpiles_sum(int grid1[3][3], int grid2[3][3]) {
+void sandpiles_sum(int grid1[3][3], int grid2[3][3])
+{
 	int i, j, temp, over3 = 0;
+
 	for (i = 0; i < 3; i++)
 	{
-		for (j = 0; j < 3; j++) {
+		for (j = 0; j < 3; j++)
+		{
 			temp = grid1[i][j];
 			grid1[i][j] = temp + grid2[i][j];
-			if (grid1[i][j] > 3) {
+			if (grid1[i][j] > 3)
+			{
 				over3 = 1;
 			}
 		}
