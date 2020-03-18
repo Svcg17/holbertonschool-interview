@@ -13,20 +13,15 @@ c = fileSize = 0
 statCount = {}
 
 
-def handleTen(statCount, c, fileSize):
+def handleTen(statCount, fileSize):
+    sys.stdout.write("File size: {}\n".format(fileSize))
     for key in sorted(statCount.keys()):
         sys.stdout.write("{}: {}\n".format(key, statCount[key]))
-    sys.stdout.write("File size: {}\n".format(fileSize))
-    c = fileSize = 0
-    statCount = {}
-    return statCount, c, fileSize
 
 
 try:
     for line in sys.stdin:
         split = line.split(" ")
-        if len(split) < 9:
-            continue
         status = split[7]
         fileSize += int(split[8])
 
@@ -35,12 +30,14 @@ try:
         else:
             statCount[status] = 1
 
+        if c == 9:
+            handleTen(statCount, fileSize)
+            c = fileSize = 0
+
         c += 1
-        if c == 10:
-            statCount, c, fileSize = handleTen(statCount, c, fileSize)
     else:
-        statCount, c, fileSize = handleTen(statCount, c, fileSize)
+        handleTen(statCount, fileSize)
 
 
 except KeyboardInterrupt:
-    statCount, c, fileSize = handleTen(statCount, c, fileSize)
+    handleTen(statCount, fileSize)
