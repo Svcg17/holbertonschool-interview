@@ -36,8 +36,11 @@ try:
             statCount[status] = 1
 
         c += 1
-        if c == 9:
+        if c == 10:
             statCount, c, fileSize = handleTen(statCount, c, fileSize)
+    else:
+        statCount, c, fileSize = handleTen(statCount, c, fileSize)
+
 
 except KeyboardInterrupt:
     statCount, c, fileSize = handleTen(statCount, c, fileSize)
