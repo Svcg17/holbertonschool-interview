@@ -8,8 +8,7 @@
 """
 import sys
 
-c = 0
-fileSize = 0
+c = fileSize = 0
 statCount = {}
 
 for line in sys.stdin:
@@ -23,10 +22,11 @@ for line in sys.stdin:
         statCount[status] += 1
     else:
         statCount[status] = 1
+
     c += 1
     if c == 9:
         for key in sorted(statCount.keys()):
-            print("{}: {}".format(key, statCount[key]))
-        print("File size:", fileSize)
+            sys.stdout.write("{}: {}\n".format(key, statCount[key]))
+        sys.stdout.write("File size: {}\n".format(fileSize))
         c = fileSize = 0
         statCount = {}
