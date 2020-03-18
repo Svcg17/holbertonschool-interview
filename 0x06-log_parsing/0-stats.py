@@ -10,13 +10,16 @@ import sys
 import signal
 
 c = fileSize = 0
-statCount = {}
+statCount = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0,
+             "404": 0, "405": 0, "500": 0}
 
 
 def handleTen(statCount, fileSize):
-    sys.stdout.write("File size: {}\n".format(fileSize))
+    print("File size: {}".format(fileSize))
     for key in sorted(statCount.keys()):
-        sys.stdout.write("{}: {}\n".format(key, statCount[key]))
+        if statCount[key] == 0:
+            continue
+        print("{}: {}".format(key, statCount[key]))
 
 
 try:
@@ -25,10 +28,8 @@ try:
         status = split[7]
         fileSize += int(split[8])
 
-        if statCount.get(status):
+        if status in statCount:
             statCount[status] += 1
-        else:
-            statCount[status] = 1
 
         if c == 9:
             handleTen(statCount, fileSize)
@@ -39,5 +40,6 @@ try:
         handleTen(statCount, fileSize)
 
 
-except KeyboardInterrupt:
+except (KeyboardInterrupt, SystemExit):
     handleTen(statCount, fileSize)
+    raise
