@@ -26,8 +26,8 @@ if __name__ == "__main__":
             c += 1
             split = line.split(" ")
             try:
-                status = split[7]
-                fileSize += int(split[8])
+                status = split[-2]
+                fileSize += int(split[-1])
 
                 if status in statCount:
                     statCount[status] += 1
