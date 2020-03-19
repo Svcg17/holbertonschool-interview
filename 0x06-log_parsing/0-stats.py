@@ -6,40 +6,40 @@
         appears
         - print the sum of the file sizes
 """
-import sys
-import signal
+if __name__ == "__main__":
+    import sys
+    import signal
 
-c = fileSize = 0
-statCount = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0,
-             "404": 0, "405": 0, "500": 0}
+    c = fileSize = 0
+    statCount = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0,
+                 "404": 0, "405": 0, "500": 0}
 
+    def handleTen(statCount, fileSize):
+        print("File size: {}".format(fileSize))
+        for key in sorted(statCount.keys()):
+            if statCount[key] == 0:
+                continue
+            print("{}: {}".format(key, statCount[key]))
 
-def handleTen(statCount, fileSize):
-    print("File size: {}".format(fileSize))
-    for key in sorted(statCount.keys()):
-        if statCount[key] == 0:
-            continue
-        print("{}: {}".format(key, statCount[key]))
+    try:
+        for line in sys.stdin:
+            c += 1
+            split = line.split(" ")
+            try:
+                status = split[7]
+                fileSize += int(split[8])
 
+                if status in statCount:
+                    statCount[status] += 1
+            except Exception:
+                pass
 
-try:
-    for line in sys.stdin:
-        split = line.split(" ")
-        status = split[7]
-        fileSize += int(split[8])
+            if c % 10 == 0:
+                handleTen(statCount, fileSize)
 
-        if status in statCount:
-            statCount[status] += 1
-
-        if c == 9:
+        else:
             handleTen(statCount, fileSize)
-            c = fileSize = 0
 
-        c += 1
-    else:
+    except (KeyboardInterrupt, SystemExit):
         handleTen(statCount, fileSize)
-
-
-except (KeyboardInterrupt, SystemExit):
-    handleTen(statCount, fileSize)
-    raise
+        raise
