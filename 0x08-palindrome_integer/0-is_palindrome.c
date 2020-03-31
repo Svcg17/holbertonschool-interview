@@ -1,17 +1,4 @@
 #include "palindrome.h"
-
-unsigned long *max_mult_ten(unsigned long n)
-{
-	unsigned long num = n;
-	unsigned long max = 1;
-	unsigned long *ret = &max;
-	while (num / max > 0) {
-		max = max * 10;
-	}
-	max = max / 10;
-	return (ret);
-}
-
 /**
  * is_palindrome - checks whether or not an unsigned integer is a
  * palindrome
@@ -20,15 +7,17 @@ unsigned long *max_mult_ten(unsigned long n)
  */
 int is_palindrome(unsigned long n)
 {
-	unsigned long max, f, l;
-	while (n) {
-		max = *(max_mult_ten(n));
-		f = n / max;
-		l = n % 10;
-		if (l == f)
-			n = (n % max) / 10;
-		else
-			return (0);
+	unsigned long rem, rev, num = 0;
+	num = n;
+
+	while (n)
+	{
+		rem = n % 10;
+		rev = (rev * 10) + rem;
+		n = n / 10;
 	}
-	return (1);
+	if (rev == num)
+		return (1);
+	else
+		return (0);
 }
