@@ -13,12 +13,8 @@ def validUTF8(data):
                 counter -= 1
                 if counter == 0:
                     return False
-        elif counter:
-            if num >> 6 == 2:
-                counter -= 1
-            else:
+        elif counter > 0:
+            if num >> 6 != 2:
                 return False
-    if not counter:
-        return True
-    else:
-        return False
+            counter -= 1
+    return not counter
