@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 def validUTF8(data):
     counter = 0
     for num in data:
