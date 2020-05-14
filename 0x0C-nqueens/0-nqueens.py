@@ -12,44 +12,44 @@ def format(board):
     print(ret)
 
 
-def isValid(board, curCol, row):
+def isValid(board, curCol, row, n):
     """Checks if board[row][curCol] is a valid queen"""
     # Check prev columns
     for i in range(curCol):
         if board[row][i] == 1:
             return False
-    # Check for left diagonal
-    i = row - 1
-    j = curCol - 1
+    # Check for upper diagonal
+    i = row
+    j = curCol
     while i >= 0 and j >= 0:
         if board[i][j] == 1:
             return False
         i -= 1
         j -= 1
-    # Check for right diagonal
-    i = row - 1
-    j = curCol + 1
-    while i >= 0 and j < 4:
+    # Check for lower diagonal
+    i = row
+    j = curCol
+    while i < n and j >= 0:
         if board[i][j] == 1:
             return False
-        i -= 1
-        j += 1
+        i += 1
+        j -= 1
     return True
 
 
 def nQueens(board, curCol, n):
     """Recursive call that places queens in all the
     posible positions of the board"""
+    stat = False
     if curCol == n:
         format(board)
         return True
     for row in range(0, n):
-        if isValid(board, curCol, row):
+        if isValid(board, curCol, row, n):
             board[row][curCol] = 1
-            if nQueens(board, curCol + 1, n):
-                return True
+            stat = nQueens(board, curCol + 1, n) or stat
             board[row][curCol] = 0
-    return False
+    return stat
 
 
 if __name__ == '__main__':
