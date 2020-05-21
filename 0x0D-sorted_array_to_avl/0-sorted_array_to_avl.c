@@ -38,6 +38,8 @@ avl_t *construct_tree(avl_t *parent, int *array, int l, int r)
 	if (l > r)
 		return (NULL);
 	new = create_node(array[m], parent);
+	if (!new)
+		return (NULL);
 	new->left = construct_tree(new, array, l, m - 1);
 	new->right = construct_tree(new, array, m + 1, r);
 
@@ -57,5 +59,7 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	int r = size - 1;
 
 	root = construct_tree(root, array, l, r);
+	if (!root)
+		return (NULL);
 	return (root);
 }
