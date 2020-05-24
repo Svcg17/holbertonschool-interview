@@ -1,3 +1,9 @@
+#ifndef _SKIP_LIST_
+#define _SKIP_LIST_
+
+#include <stdlib.h>
+#include <stdio.h>
+
 /**
  * struct skiplist_s - Singly linked list with an express lane
  *
@@ -9,17 +15,14 @@
  * Description: singly linked list node structure with an express lane
  * for Holberton project
  */
-
-#include <stdlib.h>
-#include <stdio.h>
-
-
 typedef struct skiplist_s
 {
-    int n;
-    size_t index;
-    struct skiplist_s *next;
-    struct skiplist_s *express;
+	int n;
+	size_t index;
+	struct skiplist_s *next;
+	struct skiplist_s *express;
 } skiplist_t;
 
 skiplist_t *linear_skip(skiplist_t *list, int value);
+
+#endif

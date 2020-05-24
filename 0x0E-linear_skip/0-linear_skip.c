@@ -43,7 +43,7 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 			last = list->express;
 			printf("Value found between indexes [%lu] and [%lu]\n",
 					list->index, last->index);
-			return check_in_list(list, value, last);
+			return (check_in_list(list, value, last));
 		}
 		list = list->express;
 		if (!list->express)
@@ -53,7 +53,7 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 				last = last->next;
 			printf("Value found between indexes [%lu] and [%lu]\n",
 					list->index, last->index);
-			return check_in_list(list, value, last);
+			return (check_in_list(list, value, last));
 		}
 	}
 	return (NULL);
