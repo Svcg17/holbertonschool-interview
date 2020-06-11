@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""Solution for rain problem
+"""
+
+
 def rain(walls):
     """
     Given a list of non-negative integers representing walls of width 1,
