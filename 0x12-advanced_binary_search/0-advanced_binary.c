@@ -54,16 +54,8 @@ int advanced_binary(int *array, size_t size, int value)
 	return (search(array, 0, size - 1, value, size));
 }
 
-/**
- * advanced_binary_iter - Searches for a value in a sorted array of integers
- * iteratively.
- * @array: pointer to the first element of hte array to search in
- * @size: number of elements in array
- * @value: the value to search for
- *
- * Return: The index where the value was located for the first time, or -1
-*/
-int advanced_binary_iter(int *array, size_t size, int value)
+/*
+ int advanced_binary_iter(int *array, size_t size, int value)
 {
 	int l = 0;
 	int r = size - 1;
@@ -83,3 +75,4 @@ int advanced_binary_iter(int *array, size_t size, int value)
 	}
 	return (-1);
 }
+*/
