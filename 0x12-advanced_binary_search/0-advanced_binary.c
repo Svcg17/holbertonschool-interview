@@ -53,26 +53,3 @@ int advanced_binary(int *array, size_t size, int value)
 		return (-1);
 	return (search(array, 0, size - 1, value, size));
 }
-
-/*
- int advanced_binary_iter(int *array, size_t size, int value)
-{
-	int l = 0;
-	int r = size - 1;
-	int mid = 0;
-
-	if (value > 0 && value < (int) size - 1)
-	{
-		while (l < r)
-		{
-			mid = l + (r - l) / 2;
-			if (array[mid] < value)
-				l = mid + 1;
-			else
-				r = mid;
-		}
-		return (l);
-	}
-	return (-1);
-}
-*/
