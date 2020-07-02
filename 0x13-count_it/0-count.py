@@ -61,5 +61,3 @@ def count_words(subreddit, word_list):
                            reverse=True):
             if v != 0:
                 print('{}: {}'.format(k, v))
-    else:
-        print()
