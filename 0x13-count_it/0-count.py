@@ -31,7 +31,7 @@ def recurse(subreddit, word_list, hot_titles, after=""):
 
     for i in res.json().get('data').get('children'):
         title_s = i.get('data').get('title').split()
-        for word in word_list:
+        for word in set(word_list):
             if word.lower() in [x.lower() for x in title_s]:
                 if hot_titles.get(word):
                     hot_titles[word] += 1
