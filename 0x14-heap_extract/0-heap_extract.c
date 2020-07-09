@@ -103,6 +103,10 @@ int heap_extract(heap_t **root)
 		else
 			last_node->parent->right = NULL;
 	}
+	else
+	{
+		*root = NULL;
+	}
 	free(last_node);
 	heapify(*root);
 	return (max);
