@@ -87,6 +87,8 @@ int heap_extract(heap_t **root)
 	int size = get_tree_size(*root);
 	heap_t *last_node = get_node(*root, size);
 
+	if (!root || !*root)
+		return 0;
 	swap(last_node, *root);
 	if (last_node->parent->left == last_node)
 		last_node->parent->left = NULL;
