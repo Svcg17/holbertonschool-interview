@@ -83,12 +83,16 @@ void heapify(heap_t *root)
  */
 int heap_extract(heap_t **root)
 {
-	int max = (*root)->n;
-	int size = get_tree_size(*root);
-	heap_t *last_node = get_node(*root, size);
+	int max;
+	int size;
+	heap_t *last_node;
 
 	if (!root || !*root)
-		return 0;
+		return (0);
+	max = (*root)->n;
+	size = get_tree_size(*root);
+	last_node = get_node(*root, size);
+
 	swap(last_node, *root);
 	if (last_node->parent->left == last_node)
 		last_node->parent->left = NULL;
