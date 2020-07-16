@@ -14,8 +14,8 @@ void print_num(int *nums3, int size)
 
 	if (!nums3 && !size)
 	{
-		printf("0");
-		exit (0);
+		printf("0\n");
+		exit(0);
 	}
 	while (nums3[i] == 0)
 		i++;
