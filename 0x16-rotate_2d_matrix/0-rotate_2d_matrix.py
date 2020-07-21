@@ -2,12 +2,17 @@
 """Rotate 2D Matrix"""
 
 
-def swap(matrix, i, j):
+def swap(matrix, i, j, e=None):
     """Swaps the values of an matrix
     """
-    matrix[i][j] = matrix[i][j] * matrix[j][i]
-    matrix[j][i] = matrix[i][j] // matrix[j][i]
-    matrix[i][j] = matrix[i][j] // matrix[j][i]
+    if not e:
+        matrix[i][j] = matrix[i][j] * matrix[j][i]
+        matrix[j][i] = matrix[i][j] // matrix[j][i]
+        matrix[i][j] = matrix[i][j] // matrix[j][i]
+    else:
+        matrix[i][j] = matrix[i][j] * matrix[i][e]
+        matrix[i][e] = matrix[i][j] // matrix[i][e]
+        matrix[i][j] = matrix[i][j] // matrix[i][e]
 
 
 def rotate_2d_matrix(matrix):
@@ -20,6 +25,9 @@ def rotate_2d_matrix(matrix):
             swap(matrix, i, j)
 
     for i in range(len(matrix)):
-        matrix[i][0] = matrix[i][0] * matrix[i][2]
-        matrix[i][2] = matrix[i][0] // matrix[i][2]
-        matrix[i][0] = matrix[i][0] // matrix[i][2]
+        s = 0
+        e = len(matrix) - 1
+        while s < e:
+            swap(matrix, i, s, e)
+            s += 1
+            e -= 1
