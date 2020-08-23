@@ -59,7 +59,7 @@ void merge_split(int *array, int *copy, int left, int right)
 {
 	int mid = left + (right - left) / 2;
 
-	if (left == mid || right == mid)
+	if (right - left <= 1)
 		return;
 
 	merge_split(copy, array, left, mid);
