@@ -2,12 +2,14 @@
 
 /**
  * merge - merges the copied array into the original one
- * @array: array to update 
+ * @array: array of integers to sort (the one being updated)
+ * @copy: copy of the array to sort
  * @left: left-most index indicating beginning of array;
  * @right: right-most index indication end of array;
  * @mid: half point between left and right indexes
  */
-void merge(int *array, int *copy, int left, int right, int mid) {
+void merge(int *array, int *copy, int left, int right, int mid)
+{
 	int start, end, i = left;
 
 	start = left;
@@ -17,7 +19,8 @@ void merge(int *array, int *copy, int left, int right, int mid) {
 	print_array(copy + left, mid - left);
 	printf("[right]: ");
 	print_array(copy + mid, right - mid);
-	while (start < mid && end < right) {
+	while (start < mid && end < right)
+	{
 		if (copy[start] < copy[end])
 		{
 			array[i] = copy[start];
@@ -29,12 +32,14 @@ void merge(int *array, int *copy, int left, int right, int mid) {
 		}
 		i++;
 	}
-	while (start < mid) {
+	while (start < mid)
+	{
 		array[i] = copy[start];
 		i++;
 		start++;
 	}
-	while(end <= right) {
+	while (end <= right)
+	{
 		array[i] = copy[end];
 		i++;
 		end++;
@@ -54,7 +59,8 @@ void merge_split(int *array, int *copy, int left, int right)
 {
 	int mid = left + (right - left) / 2;
 
-	if (left == mid || right == mid) return;
+	if (left == mid || right == mid)
+		return;
 
 	merge_split(copy, array, left, mid);
 	merge_split(copy, array, mid, right);
@@ -66,12 +72,12 @@ void merge_split(int *array, int *copy, int left, int right)
  * @array: array of integers to sort
  * @size: size of the array
  */
- void merge_sort(int *array, size_t size)
- {
+void merge_sort(int *array, size_t size)
+{
 	int *copy;
 	size_t i = 0;
 
-	if (size < 2)
+	if (!array || size < 2)
 		return;
 
 	copy = malloc(size * sizeof(int));
@@ -80,4 +86,4 @@ void merge_split(int *array, int *copy, int left, int right)
 
 	merge_split(array, copy, 0, size);
 	free(copy);
- }
+}
