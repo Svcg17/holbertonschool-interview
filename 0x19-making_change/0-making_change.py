@@ -9,11 +9,11 @@ def makeChange(coins, total):
         coins: array of integers representing the coin values
         total: the total to find coins for
     """
-    array = [float('inf')] * (total + 1)
-    array[0] = 0
-
     if total <= 0:
         return 0
+
+    array = [float('inf')] * (total + 1)
+    array[0] = 0
 
     for i in range(1, len(array)):
         for j in range(len(coins)):
