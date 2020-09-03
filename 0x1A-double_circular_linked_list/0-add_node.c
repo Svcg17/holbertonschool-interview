@@ -13,6 +13,8 @@ List *create_node(char *str)
 	if (!new)
 		return (NULL);
 	new->str = strdup(str);
+	if (!new->str)
+		return (NULL);
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);
