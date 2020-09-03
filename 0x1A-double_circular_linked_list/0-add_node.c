@@ -28,9 +28,6 @@ List *add_node_end(List **list, char *str)
 {
 	List *last, *new;
 
-	if (!list || !str)
-		return (NULL);
-
 	new = create_node(str);
 	if (!new)
 		return (NULL);
@@ -62,9 +59,6 @@ List *add_node_end(List **list, char *str)
 List *add_node_begin(List **list, char *str)
 {
 	List *last, *new;
-
-	if (!list || !str)
-		return (NULL);
 
 	new = create_node(str);
 	if (!new)
