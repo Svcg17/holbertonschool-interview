@@ -6,11 +6,10 @@
  * considered identical, otherwise return 0.
  * @s1: string to compare
  * @s2: string to compare that can have wildcards
- * Return 1 if strings are identical, else 0
+ * Return: 1 if strings are identical, else 0
  */
 int wildcmp(char *s1, char *s2)
 {
-	/* printf("a bubu\n"); */
 	if (!*s1)
 	{
 		if (*s2 == '*')
